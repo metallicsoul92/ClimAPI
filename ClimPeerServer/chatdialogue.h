@@ -1,0 +1,4 @@
+#ifndef CHATDIALOGUE_H
+#define CHATDIALOGUE_H
+
+#endif // CHATDIALOGUE_H
