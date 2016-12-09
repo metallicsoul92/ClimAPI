@@ -24,12 +24,12 @@ namespace clim{
         Array(unsigned int count);
         //creating a generic constructor by the type , default as 10 templates
         Array(const t &first);
-        Array(const t *data);
+        Array(const t *data, unsigned int amount):m_data(data),m_size(10),m_last(amount){}
 
         ~Array();
 
         t *getAllData();
-        const t * AllData() const;
+        const t *AllData() const;
         t getData(unsigned int index);
         const t Data(unsigned int index)const;
         t pop();
@@ -43,11 +43,6 @@ namespace clim{
 
         const char * toString();
     };
-    template <typename t>
-    unsigned int Array<t>::getSize() const
-    {
-        return m_size;
-    }
 
     template <typename t>
     void Array<t>::setSize(unsigned int value)
@@ -58,6 +53,12 @@ namespace clim{
     unsigned int Array<t>::getLast() const
     {
         return m_last;
+    }
+
+    template <typename t>
+    unsigned int Array<t>::getSize() const
+    {
+        return m_size;
     }
 
     template <typename t>
@@ -90,11 +91,14 @@ namespace clim{
         free(this->m_data);
     }
 
+
     template <typename t>
     t *Array<t>::getAllData()
     {
         return m_data;
     }
+
+
 
     template <typename t>
     const t *Array<t>::AllData() const
