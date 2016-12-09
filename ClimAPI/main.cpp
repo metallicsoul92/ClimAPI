@@ -16,6 +16,7 @@
         public:\
         DTNAME(VAR1T a,VAR2T b,VAR3T c,VAR4T d):VAR1(a),VAR2(b),VAR3(c),VAR4(d){}\
         ~DTNAME(){}\
+
         VAR1T getVAR1(){return VAR1;}\
         VAR2T getVAR2(){return VAR2;}\
         VAR3T getVAR3(){return VAR3;}\
