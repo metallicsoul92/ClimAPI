@@ -23,4 +23,7 @@ HEADERS += \
     include/math/vector.hpp \
     include/base/Array.hpp \
     include/base/bivar.hpp \
-    include/base/metastruct.hpp
+    include/base/metastruct.hpp \
+    include/base/hashvalue.hpp \
+    include/base/hashmap.hpp \
+    include/base/node.hpp

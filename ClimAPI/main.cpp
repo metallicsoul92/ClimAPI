@@ -4,6 +4,7 @@
 #include "include/base/Array.hpp"
 #include "include/base/bivar.hpp"
 #include "include/base/metastruct.hpp"
+#include "include/base/hashmap.hpp"
 
 
 #define createNewDataType(DTNAME,VAR1,VAR1T,VAR2,VAR2T,VAR3,VAR3T,VAR4,VAR4T)\
@@ -16,7 +17,6 @@
         public:\
         DTNAME(VAR1T a,VAR2T b,VAR3T c,VAR4T d):VAR1(a),VAR2(b),VAR3(c),VAR4(d){}\
         ~DTNAME(){}\
-
         VAR1T getVAR1(){return VAR1;}\
         VAR2T getVAR2(){return VAR2;}\
         VAR3T getVAR3(){return VAR3;}\
