@@ -13,7 +13,7 @@ namespace math {
     class vector{
 
     private:
-        t m_data[amount];
+        t *m_data;
 
     public:
 
@@ -77,7 +77,8 @@ namespace math {
     template <typename t,unsigned int amount>
     vector<t,amount>::~vector<t,amount>()
     {
-      delete this;
+        if(m_data)
+          delete [] m_data;
     }
 
     template <typename t,unsigned int amount>

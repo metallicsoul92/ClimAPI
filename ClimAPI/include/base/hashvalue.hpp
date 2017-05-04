@@ -20,7 +20,7 @@ namespace clim{
         void setValue(T val){this->m_value = val;}
 
         unsigned int getKey(){return this->m_key;}
-       const unsigned int Key()const {return this->m_key;}
+        unsigned int Key()const {return this->m_key;}
 
         T getValue(){return this->m_value;}
         const T Value()const {return this->m_value;}

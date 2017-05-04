@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "bivar.hpp"
+#include "Array.hpp"
 
 namespace clim{
 
@@ -28,10 +29,10 @@ namespace clim{
     class metaStruct{
 
     private:
-        variableData<t> m_data;
+        Array<variableData<t>> m_data;
     public:
-        metaStruct(variableData<t> data):m_data(data){}
-        metaStruct(metaStruct && data):m_data(data.data()){
+        metaStruct(Array<variableData<t>> data):m_data(data.getAllData()){}
+        metaStruct(metaStruct<t> && data):m_data(data.data()){
         data = nullptr;
         }
           variableData<t> data() const
@@ -42,6 +43,12 @@ namespace clim{
         {
             m_data = data;
         }
+
+        void addMemberVariables(const variableData<t> data){
+            m_data.push(data);
+        }
+
+
     };
 
 

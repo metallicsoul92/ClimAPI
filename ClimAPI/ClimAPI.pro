@@ -26,4 +26,8 @@ HEADERS += \
     include/base/metastruct.hpp \
     include/base/hashvalue.hpp \
     include/base/hashmap.hpp \
-    include/base/node.hpp
+    include/base/node.hpp \
+    include/base/base.hpp \
+    include/math/math.hpp \
+    include/base/linkedList.hpp \
+    include/base/singleton.hpp

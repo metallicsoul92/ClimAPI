@@ -29,7 +29,7 @@ namespace clim{
 
             {
 
-                if (table[i] != NULL)
+                if (m_Map[i] != NULL)
 
                     delete m_Map[i];
 
@@ -37,9 +37,9 @@ namespace clim{
 
             }
 }
-            unsigned int hashFunction(unsigned int key){
-            return key % this->m_size;
-        }
+            unsigned int hashFunction(unsigned int key)
+            {
+            return key % this->m_size;}
 
         void insert(unsigned int k,T v);
         T search(unsigned int k);
@@ -58,36 +58,36 @@ namespace clim{
     }
 
     template<typename T>
-    void HashMap::insert(unsigned int k, T v)
+    void HashMap<T>::insert(unsigned int k, T v)
     {
-        int hash = hashFunction(k);
+        int hash = this->hashFunction(k);
 
         while (m_Map[hash] != NULL && m_Map[hash]->Key() != k)
 
             {
 
-                hash = hashFunction(hash + 1);
+                hash = this->hashFunction(hash + 1);
 
             }
 
             if (m_Map[hash] != NULL)
 
-                delete table[hash];
+                delete m_Map[hash];
 
-            m_Map[hash] = new HashEntry<T>(k, v);
+            m_Map[hash] = new HashValue<T>(k, v);
 
     }
     template <typename T>
-    T HashMap::search(unsigned int k)
+    T HashMap<T>::search(unsigned int k)
     {
 
-        int  hash = HashFunc(k);
+        int  hash = hashFunction(k);
 
         while (m_Map[hash] != NULL && m_Map[hash]->Key() != k)
 
         {
 
-            hash = hashFunction(hash + 1);
+            hash = this->hashFunction(hash + 1);
 
         }
 
@@ -100,11 +100,11 @@ namespace clim{
             return m_Map[hash]->Value();
 
     }
-
-    void HashMap::remove(unsigned int k)
+    template <typename T>
+    void HashMap<T>::remove(unsigned int k)
     {
 
-        int hash = HashFunc(key);
+        int hash = this->hashFunction(k);
 
         while (m_Map[hash] != NULL)
 
@@ -114,7 +114,7 @@ namespace clim{
 
                 break;
 
-            hash = hashFunction(hash + 1);
+            hash = this->hashFunction(hash + 1);
 
         }
 
@@ -122,7 +122,7 @@ namespace clim{
 
         {
 
-                cout<<"No Element found at key "<<k<<endl;
+                std::cout<<"No Element found at key "<<k<<std::endl;
 
                 return;
 

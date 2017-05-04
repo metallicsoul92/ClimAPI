@@ -24,13 +24,26 @@ namespace clim{
         Array(unsigned int count);
         //creating a generic constructor by the type , default as 10 templates
         Array(const t &first);
-        Array(const t *data, unsigned int amount):m_data(data),m_size(10),m_last(amount){}
+        Array(const t *data, unsigned int amount):m_data(data),m_size(sizeof(data)),m_last(amount){}
 
         ~Array();
 
         t *getAllData();
         const t *AllData() const;
         t getData(unsigned int index);
+        t operator[](unsigned int index){ return m_data[index];}
+
+        Array<t>& operator=(const Array<t>& other){
+            if(this->m_data != nullptr)
+                delete[] m_data;
+
+            this->m_data = other->Data();
+            this->m_size = other->Size();
+            this->m_last = other->Last();
+
+
+        }
+
         const t Data(unsigned int index)const;
         t pop();
         const t popc();
@@ -70,14 +83,14 @@ namespace clim{
     template <typename t>
     Array<t>::Array(unsigned int count)
     {
-        m_data = (t*)malloc(sizeof(t)*count);
+        m_data = new t[count];
         m_size = count;
         m_last = 0;
     }
     template <typename t>
     Array<t>::Array(const t &first)
     {
-        m_data = (t*)malloc(sizeof(t)*10);
+        m_data = new t[10];
         m_data[0] = first;
         m_size = 10;
         m_last = 1;
