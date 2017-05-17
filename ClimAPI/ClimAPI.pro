@@ -16,13 +16,15 @@ TEMPLATE = app
 
  CONFIG += c++11
 
-SOURCES += main.cpp
+SOURCES +=src/base/file.cpp \
+          main.cpp \
+    src/base/logger.cpp \
+    src/base/bytearray.cpp
 
 HEADERS += \
     include/math/matrix.hpp \
     include/math/vector.hpp \
     include/base/Array.hpp \
-    include/base/bivar.hpp \
     include/base/metastruct.hpp \
     include/base/hashvalue.hpp \
     include/base/hashmap.hpp \
@@ -30,4 +32,10 @@ HEADERS += \
     include/base/base.hpp \
     include/math/math.hpp \
     include/base/linkedList.hpp \
-    include/base/singleton.hpp
+    include/base/singleton.hpp \
+    include/base/ref.hpp \
+    include/base/file.hpp \
+    include/base/Pair.hpp \
+    include/base/logger.hpp \
+    include/base/ByteArray.hpp \
+    include/base/hex.hpp

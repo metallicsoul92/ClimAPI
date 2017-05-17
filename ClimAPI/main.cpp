@@ -3,16 +3,18 @@
 #include "include/math/matrix.hpp"
 #include "include/math/vector.hpp"
 #include "include/base/Array.hpp"
-#include "include/base/bivar.hpp"
+#include "include/base/Pair.hpp"
 #include "include/base/metastruct.hpp"
 #include "include/base/hashmap.hpp"
 #include "include/base/base.hpp"
 #include "include/math/math.hpp"
 #include "include/base/linkedList.hpp"
 #include "include/base/singleton.hpp"
+#include "include/base/ref.hpp"
+#include "include/base/logger.hpp"
+#include "include/base/ByteArray.hpp"
+#include "include/base/hex.hpp"
 #include <omp.h>
-
-
 
 
 const std::string caeserCipher(const std::string data, int amount){
@@ -26,6 +28,13 @@ const std::string caeserCipher(const std::string data, int amount){
 
 }
 
+double power(double base, int exp){
+    if(exp == 1){
+        return base;
+    }else
+        return base * power(base, exp-1);
+}
+
 
 
 
@@ -34,9 +43,9 @@ const std::string caeserCipher(const std::string data, int amount){
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-
+    clim::base::Logger log("ClimLogger.txt",clim::base::Logger::APPEND);
     CREATE_CLASS_4PARAM(climTest,name,std::string,age,int ,test2,float,test3,char const *)
-
+    log.write("Hello World!",clim::base::Logger::VERBOSE);
     std::cout << "Hello World!" <<std::endl << "Ciphered by 2:" << std::endl << caeserCipher("Hello World!",2) << std::endl;
     std::cout << caeserCipher(caeserCipher("Hello World!",2),-2) << std::endl;
     climTest test("Clim",24,3.14,"Data");
@@ -49,8 +58,9 @@ int main(int argc, char *argv[])
     ar.push(30);
     ar.push(-20);
 
-    clim::base::bivar<std::string, std::string> nameVariable("Name","Clim");
-    clim::base::bivar<std::string, int> ageVariable("Age",24);
+
+    clim::base::pair<std::string, std::string> nameVariable("Name","Clim");
+    clim::base::pair<std::string, int> ageVariable("Age",24);
     std::cout << nameVariable.getFirst() << ":" << nameVariable.getSecond() << std::endl;
     std::cout << ageVariable.getFirst() << ":" << ageVariable.getSecond() << std::endl;
 
@@ -71,39 +81,34 @@ int main(int argc, char *argv[])
     delete sar;
    std::cout << "Hello World!" << std::endl;
 
-#define OS WINDOWS10
-
-
-   CREATE_CUSTOM_CLASS_INTERNAL_BEGIN(MyClass)
-   SET_PRIVATE_MEMBER_VARIABLE(std::string,name)
-   SET_PRIVATE_MEMBER_VARIABLE(int,age)
-   SET_PRIVATE_MEMBER_VARIABLE(float,weight)
-   SET_PUBLIC_INTERNAL()
-   GETSET(std::string,name)
-   GETSET(int,age)
-   GETSET(float,weight)
-   CREATE_CUSTOM_CLASS_INTERNAL_END()
-
-
-
-MyClass Person;
-   Person.Setname("Muj");
-   Person.Setage(34);
-   Person.Setweight(70.53);
-
-   std::cout << "Person: Name:" << Person.Getname() << std::endl
-             << "        Age:" << Person.Getage() << std::endl
-             << "        Weight:" << Person.Getweight() << std::endl;
-
-
-
-
-
-
+#define OS WINDOWS
 
 
    std::cout << "HELLO " STRINGIFY(OS) << std::endl;
 
+
+   std::cout << std::endl << std::endl;
+   std::cout << "==========================================";
+   std::cout << std::endl << std::endl<< std::endl << std::endl<< std::endl << std::endl;
+
+   std::cout << power(10,5) << std::endl;
    delete temp;
+
+   clim::base::ByteArray *bytes = new clim::base::ByteArray();
+   bytes->append((uint8_t)15);
+   bytes->append((uint8_t)23);
+   bytes->append((uint8_t)55);
+   bytes->append((uint8_t)43);
+
+   clim::base::Hex<uint8_t> test2 = clim::base::Hex<uint8_t>(65U);
+
+   std::cout << "Test2 Variable : " << +test2.getVar();
+   std::cout << std::endl << "Test2Hex: " << test2.toString() << std::endl;
+
+   std::cout << bytes->toString();
+   std::cout << bytes->toHexString();
+
+
     return 0;
 }
+

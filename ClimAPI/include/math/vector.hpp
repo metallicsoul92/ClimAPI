@@ -63,6 +63,7 @@ namespace math {
     template <typename t,unsigned int amount>
     vector<t,amount>::vector( t data[amount])
     {
+        m_data = new t[amount];
         for(unsigned int i = 0; i < amount ; i++){
             this->m_data[i] = data[i];
         }
@@ -315,6 +316,18 @@ namespace math {
         return temp;
 
     }
+
+    typedef vector<int,2> vector2;
+    typedef vector<int,3> vector3;
+    typedef vector<int,4> vector4;
+
+    typedef vector<float,2> vector2f;
+    typedef vector<float,3> vector3f;
+    typedef vector<float,4> vector4f;
+
+    typedef vector2 point;
+    typedef vector2f pointf;
+
 
     }
 }

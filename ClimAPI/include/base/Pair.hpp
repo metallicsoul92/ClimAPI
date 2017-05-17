@@ -6,7 +6,7 @@ namespace clim{
     namespace base{
 
     template <typename First,typename Second>
-    class bivar{
+    class pair{
 
     private:
         First m_first;
@@ -14,9 +14,9 @@ namespace clim{
 
 
     public:
-        bivar():m_first(First()),m_second(Second()){}
-        bivar(First Args1 ,Second Args2): m_first(Args1),m_second(Args2){}
-        ~bivar(){}
+        pair():m_first(First()),m_second(Second()){}
+        pair(First Args1 ,Second Args2): m_first(Args1),m_second(Args2){}
+        ~pair(){}
 
         void setFirst(const First &f){ m_first = f;}
         void setSecond(const Second &s){ m_second =s;}

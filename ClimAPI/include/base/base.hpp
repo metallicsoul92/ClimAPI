@@ -30,6 +30,7 @@
 #define UNEXPANDED_STRINGIFY(x) #x
 #define STRINGIFY(x) UNEXPANDED_STRINGIFY(x)
 
+
 //Macro-Class-Creation
 
 #define CREATE_CUSTOM_CLASS_INTERNAL_BEGIN(DTNAME)\
@@ -56,6 +57,17 @@
       m_##var = val; \
    }
 #define CREATE_CUSTOM_CLASS_INTERNAL_END() };
+
+namespace clim{
+    namespace base{
+
+    template <typename t>
+    inline const t toConst(t type){
+        return const_cast<t>(type);
+    }
+
+    }
+}
 
 
 

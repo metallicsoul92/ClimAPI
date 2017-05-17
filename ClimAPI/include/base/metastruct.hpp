@@ -2,7 +2,7 @@
 #define METASTRUCT_HPP
 
 #include <iostream>
-#include "bivar.hpp"
+#include "Pair.hpp"
 #include "Array.hpp"
 
 namespace clim{
@@ -11,19 +11,20 @@ namespace clim{
 
     template<typename t>
     struct variableData{
-        bivar<std::string,t> Data;
+        pair<std::string,t> Data;
         std::string getName(){ return this->Data.x();}
         t getVariable(){ return this->Data.y();}
 
 
-        variableData(bivar<std::string ,t > data):Data(data){}
-        variableData(std::string name, t data):Data(bivar<std::string,t>(name,data)){}
+        variableData(pair<std::string ,t > data):Data(data){}
+        variableData(std::string name, t data):Data(pair<std::string,t>(name,data)){}
         variableData(variableData && data):Data(data.Data){data = nullptr;}
 
     };
 
     /**
-      This will work of the bivar's principle of 2 diffrent types. the first will always be a string
+      This will work of the bivar's principle of 2 diffrent types. the first will always be a
+      string
       */
     template <typename t>
     class metaStruct{

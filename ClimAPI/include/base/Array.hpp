@@ -20,6 +20,7 @@ namespace clim{
 
 
     public:
+        Array();
         //creating a generic constructor by the amount
         Array(unsigned int count);
         //creating a generic constructor by the type , default as 10 templates
@@ -27,6 +28,8 @@ namespace clim{
         Array(const t *data, unsigned int amount):m_data(data),m_size(sizeof(data)),m_last(amount){}
 
         ~Array();
+
+        void resize(unsigned int sz);
 
         t *getAllData();
         const t *AllData() const;
@@ -40,8 +43,6 @@ namespace clim{
             this->m_data = other->Data();
             this->m_size = other->Size();
             this->m_last = other->Last();
-
-
         }
 
         const t Data(unsigned int index)const;
@@ -81,6 +82,14 @@ namespace clim{
     }
 
     template <typename t>
+    Array<t>::Array()
+    {
+        m_data = new t[10];
+        m_size = 10;
+        m_last = 0;
+
+    }
+    template<typename t>
     Array<t>::Array(unsigned int count)
     {
         m_data = new t[count];
@@ -102,6 +111,21 @@ namespace clim{
     Array<t>::~Array()
     {
         free(this->m_data);
+    }
+
+    template<typename t>
+    void Array<t>::resize(unsigned int sz)
+    {
+        //Allocate memory double the size
+        t* newData = new t[sz];
+        //copy the memory into the newData
+        for(unsigned int i =0; i < m_size;i++){
+            newData[i] = m_data[i];
+        }
+        //reset the size of the array
+        this->m_size = sz;
+        delete []m_data;
+        m_data = newData;
     }
 
 
@@ -144,6 +168,9 @@ namespace clim{
     template <typename t>
     void Array<t>::push(t next)
     {
+        if(m_last == m_size){
+           resize(m_size*2);
+        }
         this->m_data[m_last] = next;
         this->m_last++;
     }
@@ -152,11 +179,10 @@ namespace clim{
     const char *Array<t>::toString()
     {
         std::stringstream str;
-        char * string = "Array Value:\n";
-        str << std::endl << string << std::endl;
         for(unsigned int i =0; i < m_last; i++){
-           str << i << ":" << m_data[i] << std::endl;
+           str << m_data[i] << " ";
         }
+        str << "\n";
         return str.str().c_str();
 
     }
