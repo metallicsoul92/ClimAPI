@@ -14,6 +14,7 @@
 #include "include/base/logger.hpp"
 #include "include/base/ByteArray.hpp"
 #include "include/base/hex.hpp"
+#include "include/base/octal.hpp"
 #include <omp.h>
 
 
@@ -38,6 +39,9 @@ int main(int argc, char *argv[])
    std::cout << "Test32 Variable : " << +test32.getVar();
    std::cout << std::endl << "Test32 to Hex: " << test32.toString() << std::endl;
 
+   clim::base::Octal<uint8_t> oct1 = clim::base::Octal<uint8_t>(25);
+   std::cout << "Octal Test1 Var: " << +oct1.var()<< std::endl;
+   std::cout << "Octal Test1 to Octal: " << oct1.toString()<< std::endl;
 
 
 

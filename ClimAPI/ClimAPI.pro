@@ -38,4 +38,5 @@ HEADERS += \
     include/base/Pair.hpp \
     include/base/logger.hpp \
     include/base/ByteArray.hpp \
-    include/base/hex.hpp
+    include/base/hex.hpp \
+    include/base/octal.hpp

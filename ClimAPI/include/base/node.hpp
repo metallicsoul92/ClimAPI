@@ -112,6 +112,114 @@ namespace clim{
         dNode<T> *Last()const{return m_last;}
     };
 
+    template <typename T>
+    class tNode{
+    private:
+        T m_data;
+        tNode *m_previous;
+        tNode *m_left;
+        tNode *m_right;
+
+     public:
+        tNode();
+        tNode(const T data);
+        tNode(const T data, tNode *previous=nullptr,tNode *left=nullptr,
+              tNode *right =nullptr);
+        tNode(tNode &&move){
+            this = move;
+        }
+
+        tNode(const tNode &copy){
+            this = copy;
+        }
+
+        tNode &operator=(tNode &&move){
+            this->m_data = move.getData();
+            this->m_left = move.getLeft();
+            this->m_right = move.getRight();
+            this->m_previous = move.Previous();
+
+            move.setData(nullptr);
+            move.setLeft(nullptr);
+            move.setRight(nullptr);
+            move.setPrevious(nullptr);
+
+            move = nullptr;
+        }
+
+        tNode &operator=(const tNode &copy){
+            this->setData(copy.getData());
+            this->setLeft(copy.getLeft());
+            this->setRight(copy.getRight());
+            this->setPrevious(copy.getPrevious());
+        }
+
+        ~tNode();
+
+        T data() const
+        {
+            return m_data;
+        }
+        T getData(){
+            return m_data;
+        }
+
+        void setData(const T &data)
+        {
+            m_data = data;
+        }
+        tNode *Previous(){
+            return m_previous;
+        }
+
+        tNode *getPrevious() const
+        {
+            return m_previous;
+        }
+        void setPrevious(tNode *previous)
+        {
+            m_previous = previous;
+        }
+        tNode *Right(){
+            return m_right;
+        }
+
+        tNode *getRight() const
+        {
+            return m_right;
+        }
+        void setRight(tNode *right)
+        {
+            m_right = right;
+        }
+        tNode *Left(){
+            return m_left;
+        }
+
+        tNode *getLeft() const
+        {
+            return m_left;
+        }
+        void setLeft(tNode *left)
+        {
+            m_left = left;
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
