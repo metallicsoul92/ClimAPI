@@ -6,27 +6,20 @@
 namespace clim{
 namespace base{
 
-char *Logger::logLevelToString(Logger::LogLevel log){
+const char *Logger::logLevelToString(Logger::LogLevel log){
     switch(log){
     case VERBOSE:
         return "Verbose: ";
-        break;
     case LOG:
         return "Log: ";
-        break;
     case WARNING:
         return "Warning: ";
-        break;
     case CRITICAL:
         return "Critical: ";
-        break;
     case ERROR:
         return "Error: ";
-        break;
-    default:
-        return "Default:";
-        break;
     }
+    return "Unknown Log Type";
 }
 
 Logger::Logger():m_fileName("DefaultLog.txt")
@@ -54,7 +47,8 @@ Logger::Logger(const char *filename, Logger::FileAttr attributes):m_fileName(fil
             break;
         case FROMEND:
             m_stream->open(filename,std::ios_base::out |std::ios_base::ate);
-        default:
+        break;
+          default:
             break;
         }
 }
@@ -69,7 +63,7 @@ void Logger::write(const char *message, Logger::LogLevel level)
 {
     std::time_t time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
-    *m_stream << logLevelToString(level) << std::endl << "\t" << message << std::endl << "\t" << std::ctime(&time);
+    *m_stream <<  std::ctime(&time)<< "\t" << logLevelToString(level) << "\t" << message << std::endl;
 }
 
 

@@ -9,6 +9,8 @@
     #define DELIMITER "/"
 #endif
 
+
+
 namespace clim{
     namespace base{
 
@@ -18,16 +20,11 @@ namespace clim{
 
     }
 
-    File::File(char *name, char *path):m_name(name),m_directory(path)
-      ,m_isOpen(false),m_isReadable(false),m_isWritable(false)
-    {
-
-    }
 
     File::File(char *name, char *path, bool readable, bool writable):
         m_name(name),m_directory(path),m_isOpen(false),m_isReadable(readable),m_isWritable(writable)
     {
-
+      m_fileStream = new std::fstream();
     }
 
     void File::open()
@@ -62,7 +59,12 @@ namespace clim{
 
     std::fstream *File::fileStream() const
     {
-        return m_fileStream;
+      return m_fileStream;
+    }
+
+    std::fstream *File::getFStream()
+    {
+     return m_fileStream;
     }
 
     char *File::name() const

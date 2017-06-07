@@ -1,6 +1,7 @@
 #ifndef BASE_HPP
 #define BASE_HPP
 
+#include <cstddef>
 
 /**
   Pre-Processor Macros
@@ -58,13 +59,77 @@
    }
 #define CREATE_CUSTOM_CLASS_INTERNAL_END() };
 
+
+
+//helpful foward macros
+
+#define CLIM_NAMESPACE namespace clim{
+
+#define BASE_NAMESPACE namespace base{
+
+#define CLIM_BASE_NAMESPACE CLIM_NAMESPACE BASE_NAMESPACE
+
+#define NAMESPACE1_END }
+
+#define NAMESPACE2_END }}
+
+
+
+
+//Macro Debugging:
+
+#define Output(str) std::cout << str << std::endl;
+
+
+
+
+
+
 namespace clim{
     namespace base{
+
+      template<typename to, typename from>
+      to convert(const from f){
+       return reinterpret_cast<to>(f);
+      }
+      template<typename to, typename from>
+      to &convert(const from& f){
+       return reinterpret_cast<to&>(f);
+      }
+      template<typename to, typename from>
+      to &&convert(const from &&f){
+       return reinterpret_cast<to&&>(f);
+      }
 
     template <typename t>
     inline const t toConst(t type){
         return const_cast<t>(type);
     }
+    template <typename t>
+    inline const t& toConst(t &type){
+        return const_cast<t&>(type);
+    }
+    template <typename t>
+    inline const t&& toConst(t &&type){
+        return const_cast<t&&>(type);
+    }
+
+    template <typename t>
+    t SwapEndian(t ltype){
+      union types{
+        t  astype;
+        unsigned char asbytes[sizeof(t)] ;
+
+      }_source,_dest;
+
+     _source.astype = ltype;
+        for (std::size_t k = 0; k < sizeof(t); k++)
+            _dest.asbytes[k] = _source.asbytes[sizeof(t) - k - 1];
+
+      return _dest.astype;
+
+    }
+
 
     }
 }

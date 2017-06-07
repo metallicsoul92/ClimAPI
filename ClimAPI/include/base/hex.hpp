@@ -1,7 +1,7 @@
 #ifndef HEX_HPP
 #define HEX_HPP
 #include <algorithm>
-#include <ostream>
+#include <iostream>
 namespace clim {
     namespace base{
 
@@ -15,6 +15,7 @@ namespace clim {
         Hex(){}
         Hex(t var):m_var(var){}
 
+        template<t>
         friend std::ostream &operator<<(std::ostream& os, Hex<t> hex);
         const char * toString();
 
@@ -47,7 +48,7 @@ std::ostream &operator<<(std::ostream &os, Hex<t> hex)
     template<typename t>
     const char *Hex<t>::toString()
     {
-        static char * format = "0123456789ABCDEF";
+        std::string  format = std::string("0123456789ABCDEF");
         std::string * str = new std::string();
         str->clear();
         str->resize(sizeof(t)/8);

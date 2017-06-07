@@ -17,7 +17,7 @@ namespace clim{
                ERROR
            };
 
-            static char *logLevelToString(LogLevel log);
+            static const char *logLevelToString(LogLevel log);
 
             enum FileAttr{
                 APPEND,OVERWRITE,FROMEND

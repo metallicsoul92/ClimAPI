@@ -1,49 +1,47 @@
 #include <QCoreApplication>
 #include <QObject>
-#include "include/math/matrix.hpp"
-#include "include/math/vector.hpp"
-#include "include/base/Array.hpp"
-#include "include/base/Pair.hpp"
-#include "include/base/metastruct.hpp"
-#include "include/base/hashmap.hpp"
-#include "include/base/base.hpp"
-#include "include/math/math.hpp"
-#include "include/base/linkedList.hpp"
-#include "include/base/singleton.hpp"
-#include "include/base/ref.hpp"
-#include "include/base/logger.hpp"
-#include "include/base/ByteArray.hpp"
-#include "include/base/hex.hpp"
-#include "include/base/octal.hpp"
+
 #include <omp.h>
 
-
+#include "include/base/logger.hpp"
+#include "include/base/file.hpp"
+#include "include/base/Array.hpp"
+#include "include/base/signal.hpp"
+#include "include/base/slot.hpp"
+#include "include/base/observable.h"
+#include "include/base/ref.hpp"
 
 #include <iostream>
+#include <fstream>
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
 
-   clim::base::Hex<uint8_t> test8 = clim::base::Hex<uint8_t>(65U);
-   clim::base::Hex<uint16_t> test16 = clim::base::Hex<uint16_t>(15432U);
-   clim::base::Hex<uint32_t> test32 = clim::base::Hex<uint32_t>(35492343U);
-
-   std::cout << "Test8 Variable : " << +test8.getVar();
-   std::cout << std::endl << "Test2Hex: " << test8.toString() << std::endl;
-
-   std::cout << "Test16 Variable : " << +test16.getVar();
-   std::cout << std::endl << "Test16 to Hex: " << test16.toString() << std::endl;
-
-   std::cout << "Test32 Variable : " << +test32.getVar();
-   std::cout << std::endl << "Test32 to Hex: " << test32.toString() << std::endl;
-
-   clim::base::Octal<uint8_t> oct1 = clim::base::Octal<uint8_t>(25);
-   std::cout << "Octal Test1 Var: " << +oct1.var()<< std::endl;
-   std::cout << "Octal Test1 to Octal: " << oct1.toString()<< std::endl;
+    clim::base::Array<int> *clim = clim::base::createNewArray<int,10>();
 
 
+    clim::base::reference<clim::base::Array<int>*> ref(clim);
+
+    ref.getVar()->push(10);
+    ref.getVar()->push(15);
+    std::cout << ref.getVar()->getData(0);
+
+    clim::base::Logger log("Test.txt",clim::base::Logger::APPEND);
+
+    log.write("This is just a test",clim::base::Logger::LOG);
+
+    clim::base::File file("Test.txt",
+                          "C:\\Users\\metal\\OneDrive\\Documents\\GitHub\\ClimAPI\\build-ClimAPI-Desktop_Qt_5_8_0_MinGW_32bit3-Debug"
+                          ,true,true);
+
+  file.open();
+
+  std::string line;
+  while(std::getline(*file.getFStream(),line) ){
+      std::cout << line << "\n";
+    }
 
     return 0;
 }

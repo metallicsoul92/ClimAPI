@@ -10,7 +10,6 @@ namespace clim  {
     {
     public:
 
-        File(char *name,char *path);
         File(char *name,char *path,bool readable =true, bool writable =false);
 
         ~File();
@@ -18,6 +17,7 @@ namespace clim  {
         void open();
 
         std::fstream *fileStream() const;
+        std::fstream *getFStream();
 
         char *name() const;
         void setName(char *name);

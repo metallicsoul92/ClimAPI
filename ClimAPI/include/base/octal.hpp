@@ -2,7 +2,7 @@
 #define OCTAL_HPP
 
 #include <algorithm>
-#include <ostream>
+#include <iostream>
 namespace clim {
     namespace base{
 
@@ -16,6 +16,7 @@ namespace clim {
         Octal(){}
         Octal(t var):m_var(var){}
 
+        template <t>
         friend std::ostream &operator<<(std::ostream& os, Octal<t> Octal);
         const char * toString();
 
@@ -48,7 +49,7 @@ std::ostream &operator<<(std::ostream &os, Octal<t> Octal)
     template<typename t>
     const char *Octal<t>::toString()
     {
-        static char * format = "01234567";
+        std::string format = std::string("01234567");
         std::string * str = new std::string();
         str->clear();
         str->resize(sizeof(t)/8);

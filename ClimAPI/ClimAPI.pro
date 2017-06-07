@@ -14,12 +14,16 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
- CONFIG += c++11
+ CONFIG += c++17
 
 SOURCES +=src/base/file.cpp \
           main.cpp \
     src/base/logger.cpp \
-    src/base/bytearray.cpp
+    src/base/bytearray.cpp \
+    src/base/observable.cpp \
+    src/base/signal.cpp \
+    src/base/slot.cpp \
+    src/base/sigslotconnection.cpp
 
 HEADERS += \
     include/math/matrix.hpp \
@@ -39,4 +43,9 @@ HEADERS += \
     include/base/logger.hpp \
     include/base/ByteArray.hpp \
     include/base/hex.hpp \
-    include/base/octal.hpp
+    include/base/octal.hpp \
+    include/base/variant.hpp \
+    include/base/observable.h \
+    include/base/sigslotconnection.h \
+    include/base/signal.hpp \
+    include/base/slot.hpp

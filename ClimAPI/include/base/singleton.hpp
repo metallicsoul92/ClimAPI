@@ -27,7 +27,7 @@ namespace clim{
 
 
             if(m_inst == nullptr){
-                static std::shared_ptr<Singleton<T>> inst{new Singleton<T>};
+                static std::shared_ptr<Singleton<T>> inst{new Singleton<T>()};
                 m_inst = &inst;
             }
             return inst;

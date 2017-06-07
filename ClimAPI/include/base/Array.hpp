@@ -32,7 +32,7 @@ namespace clim{
         void resize(unsigned int sz);
 
         t *getAllData();
-        const t *AllData() const;
+         t *AllData() const;
         t getData(unsigned int index);
         t operator[](unsigned int index){ return m_data[index];}
 
@@ -40,9 +40,11 @@ namespace clim{
             if(this->m_data != nullptr)
                 delete[] m_data;
 
-            this->m_data = other->Data();
-            this->m_size = other->Size();
-            this->m_last = other->Last();
+            this->m_data = other.AllData();
+            this->m_size = other.getSize();
+            this->m_last = other.getLast();
+
+            return *this;
         }
 
         const t Data(unsigned int index)const;
@@ -57,7 +59,6 @@ namespace clim{
 
         const char * toString();
     };
-
     template <typename t>
     void Array<t>::setSize(unsigned int value)
     {
@@ -138,7 +139,7 @@ namespace clim{
 
 
     template <typename t>
-    const t *Array<t>::AllData() const
+    t *Array<t>::AllData() const
     {
         return m_data;
     }
@@ -196,7 +197,23 @@ namespace clim{
         return temp;
     }
 
+/**
+  Utility Functions
+  **/
 
+
+    template <typename T, size_t size>
+    Array<T> *createNewArray(){
+      return new Array<T>(size);
+    }
+    template <typename T, size_t size>
+    Array<T> createArray(){
+      return Array<T>(size);
+    }
+    template <typename T, size_t size>
+    Array<T> &createArrayRef(){
+      return Array<T>(size);
+    }
 
 
     }
