@@ -1,0 +1,23 @@
+              ClimAPI Design Documentation
+
+Revision 1
+
+6/7/17 -1
+
+
+Version 1.0.0
+
+Namespaces:
+base: namespace of core classes of the library
+math: namespaces of mathematical data structures
+
+Classes:
+
+base::Array<T> : an Array wrapper object
+base::ByteArray : an object which acts as a representation of an unsigned char array
+base::File : an object which represents a file on a system.
+base::hashmap : a map which represents a map that uses key-value pairs
+base::hashvalue : an object which gets pointed to by the hashmap
+base::hex : an object which outputs hexadecimal variables from integrals
+base::octal : an object which outputs hexadecimal varialbes from integrals
+
