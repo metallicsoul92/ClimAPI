@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
 
     log.write("This is just a test",clim::base::Logger::LOG);
 
+    //Edit: Change this to whatever your build folder is on your computer
     clim::base::File file("Test.txt",
                           "C:\\Users\\metal\\OneDrive\\Documents\\GitHub\\ClimAPI\\build-ClimAPI-Desktop_Qt_5_8_0_MinGW_32bit3-Debug"
                           ,true,true);
